@@ -12,13 +12,13 @@ const routes = [
     title: 'Home',
   },
   {
-    icon: 'portrait',
+    icon: 'address-book',
     path: '/artists',
     name: 'artists',
     title: 'Artists',
   },
   {
-    icon: 'calendar-check',
+    icon: 'calendar-alt',
     path: '/events',
     name: 'events',
     title: 'Events',

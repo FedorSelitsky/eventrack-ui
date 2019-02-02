@@ -8,12 +8,16 @@
           </router-link>
         </div>
         <div data-flex class="hide-scroll">
-          <nav class="scroll nav-stacked nav-active-primary">
+          <nav class="scroll nav-border b-primary">
             <ul id="change_menu" class="nav" data-ui-nav>
-              <li v-for="route in $router.options.routes" :key="route.name">
+              <li
+                v-for="route in $router.options.routes"
+                :key="route.name"
+                :class="{ 'active': isActive(route.path) }"
+              >
                 <router-link :to="route.path">
                   <span class="nav-icon">
-                    <font-awesome-icon v-bind:icon="route.icon"/>
+                    <font-awesome-icon :icon="route.icon"/>
                   </span>
                   <span class="nav-text">{{ route.title }}</span>
                 </router-link>
@@ -31,25 +35,29 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import {
+  faAddressBook,
   faBars,
-  faCalendarCheck,
-  faMapMarkerAlt,
-  faPortrait
+  faCalendarAlt,
+  faMapMarkerAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
+library.add(faAddressBook);
 library.add(faBars);
-library.add(faCalendarCheck);
+library.add(faCalendarAlt);
 library.add(faMapMarkerAlt);
-library.add(faPortrait);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false;
 
 @Component
-export default class App extends Vue {}
+export default class App extends Vue {
+  isActive(path: string) {
+    return this.$route.path === path;
+  }
+}
 </script>
 
 <style>
