@@ -29,20 +29,20 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import {
-  faAddressBook,
   faBars,
+  faAddressBook,
   faCalendarAlt,
   faMapMarkerAlt
 } from '@fortawesome/free-solid-svg-icons';
 
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-library.add(faAddressBook);
 library.add(faBars);
+library.add(faAddressBook);
 library.add(faCalendarAlt);
 library.add(faMapMarkerAlt);
 
@@ -81,42 +81,42 @@ body {
 .navbar-brand,
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: bold;
+  letter-spacing: -0.04em;
   font-family: "Poppins", "Trebuchet MS", "PT Sans", "Helvetica Neue",
     "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
-  letter-spacing: -0.04em;
-  font-weight: bold;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
   outline: 0;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .app-aside {
-  position: fixed !important;
-  z-index: 1030;
   float: left;
   height: 100%;
+  z-index: 1030;
+  position: fixed !important;
 }
 
 .modal .left {
-  -webkit-transform: translate3d(-100%, 0, 0);
   transform: translate3d(-100%, 0, 0);
-  -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  -moz-transition: -moz-transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  -o-transition: -o-transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -webkit-transform: translate3d(-100%, 0, 0);
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -o-transition: -o-transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -moz-transition: -moz-transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .modal > .left {
-  position: fixed;
-  z-index: 1055;
   top: 0;
   left: 0;
-  right: auto;
   bottom: 0;
+  right: auto;
+  z-index: 1055;
+  position: fixed;
 }
 
 .nav {
@@ -125,8 +125,8 @@ a {
 
 .navbar {
   border: none;
-  padding: 0 1rem;
   flex-shrink: 0;
+  padding: 0 1rem;
   min-height: 3.5rem;
 }
 
@@ -138,17 +138,17 @@ a {
 
 .navbar-brand img,
 .navbar-brand svg {
-  position: relative;
-  max-height: 24px;
   top: 16px;
-  display: inline-block;
+  max-height: 24px;
+  position: relative;
   vertical-align: top;
+  display: inline-block;
 }
 
 .navbar-brand.md img,
 .navbar-brand.md svg {
-  max-height: 47px;
   top: 12px;
+  max-height: 47px;
 }
 
 .navside {
@@ -173,8 +173,8 @@ a {
 .navside .nav li a {
   display: block;
   padding: 0 1rem;
-  line-height: 2.25rem;
   position: relative;
+  line-height: 2.25rem;
 }
 
 .navside .nav li.active {
@@ -196,64 +196,60 @@ a {
   margin-right: 0;
 }
 
+.nav-icon {
+  top: 0;
+  float: left;
+  min-width: 1.5rem;
+  margin-right: 1rem;
+  text-align: center;
+  line-height: inherit;
+}
+
 .nav-text {
   display: block;
-  line-height: 1.125rem;
   padding: 0.5625rem 0;
+  line-height: 1.125rem;
 }
 
 .navside .nav-text {
   opacity: 0.75;
 }
 
-.nav-border .nav > li.active:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  border-left-color: inherit;
-  border-left-width: 3px;
-  border-left-style: solid;
-}
-
-.nav-icon {
-  float: left;
-  line-height: inherit;
-  margin-right: 1rem;
-  top: 0;
-  min-width: 1.5rem;
-  text-align: center;
-}
-
 .nav > li > a .nav-text {
   font-weight: 600;
+}
+
+.nav-border .nav > li.active:after {
+  top: 0;
+  bottom: 0;
+  content: "";
+  position: absolute;
+  border-left-width: 3px;
+  border-left-style: solid;
+  border-left-color: inherit;
 }
 
 @media (min-width: 992px) {
   .app-aside {
     opacity: 1;
+    width: 12.5rem;
     display: block !important;
   }
 
-  .app-aside,
-  .app-aside .scroll {
-    width: 12.5rem;
-  }
-
   .app-aside .left {
-    position: absolute;
     right: 0;
-    -webkit-transform: translate3d(0, 0, 0);
+    position: absolute;
     transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
   }
-}
-
-.light {
-  background-color: #f8f8f8;
 }
 
 .white {
   background-color: #fff;
+}
+
+.light {
+  background-color: #f8f8f8;
 }
 
 .b-primary {
