@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+
 import App from './App.vue';
+import Artists from './components/Artists.vue';
 
 Vue.use(VueRouter);
 
@@ -16,17 +18,18 @@ const routes = [
     path: '/artists',
     name: 'artists',
     title: 'Artists',
+    component: Artists,
   },
   {
     icon: 'calendar-alt',
-    path: '/events',
     name: 'events',
+    path: '/events',
     title: 'Events',
   },
   {
     icon: 'map-marker-alt',
-    path: '/venues',
     name: 'venues',
+    path: '/venues',
     title: 'Venues',
   },
 ];

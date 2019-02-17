@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="aside" class="app-aside modal">
+    <div class="app-aside modal">
       <div class="left navside white">
         <div class="navbar">
           <router-link to="/" class="navbar-brand md">
@@ -25,12 +25,25 @@
         </nav>
       </div>
     </div>
+    <div class="app-content light">
+      <div class="page-content">
+        <div class="row-col">
+          <div class="col-lg-9">
+            <div class="padding">
+              <router-view></router-view>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+import 'bootstrap/dist/css/bootstrap-grid.min.css';
+
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Vue, Component } from 'vue-property-decorator';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import {
@@ -99,6 +112,38 @@ a {
   height: 100%;
   z-index: 1030;
   position: fixed !important;
+}
+
+.app-content {
+  box-shadow: none;
+  padding: 0;
+}
+
+.app-aside:not(.hide) ~ .app-content {
+  margin-left: 12.5rem;
+}
+
+.page-content {
+  position: relative;
+  z-index: 10;
+}
+
+.row-col {
+  width: 100%;
+  height: 100%;
+  display: table;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.row-lg {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.row-lg [class*="col-"] {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .modal .left {
@@ -242,6 +287,93 @@ a {
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
   }
+
+  .row-col > [class*="col-lg"],
+  .row-col > [class*=" col-lg"] {
+    float: none;
+    height: 100%;
+    padding: 0;
+    position: static;
+    display: table-cell;
+    vertical-align: top;
+  }
+}
+
+.item {
+  margin: 0 auto;
+  position: relative;
+}
+
+.item-info {
+  position: relative;
+  padding: 10px 0 20px 0;
+  border-radius: inherit;
+}
+
+.item-title {
+  font-weight: 600;
+}
+
+.item-media {
+  padding: 0;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  border-radius: inherit;
+}
+
+.item-media:after {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.item-media-content {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 0;
+  position: absolute;
+  border-radius: inherit;
+  background-size: cover;
+}
+
+.text-sm {
+  font-size: 0.8rem;
+}
+
+.text-muted {
+  color: inherit !important;
+  opacity: 0.6;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-ellipsis {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+}
+
+.rounded {
+  border-radius: 500px;
+}
+
+.padding {
+  padding: 1.5rem 1.5rem;
+}
+
+.m-b {
+  margin-bottom: 1rem;
+}
+
+.m-a-0 {
+  margin: 0 0 !important;
 }
 
 .white {
