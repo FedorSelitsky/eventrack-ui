@@ -53,7 +53,6 @@ import {
   faMapMarkerAlt
 } from '@fortawesome/free-solid-svg-icons';
 
-
 library.add(faBars);
 library.add(faAddressBook);
 library.add(faCalendarAlt);
@@ -192,7 +191,7 @@ a {
 
 .navbar-brand.md img,
 .navbar-brand.md svg {
-  top: 12px;
+  top: 20px;
   max-height: 47px;
 }
 

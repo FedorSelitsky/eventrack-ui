@@ -21,21 +21,66 @@
         </div>
       </div>
     </div>
+    <div>
+      <b-pagination v-model="currentPage" :total-rows="count" :per-page="perPage" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import axios from 'axios';
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Prop } from 'vue-property-decorator';
+
+interface Artist {
+  id: number;
+  name: string;
+  image_url: string;
+  thumb_url: string;
+  songkick_url: string;
+  bandsintown_url: string;
+  facebook_page_url: string;
+}
 
 @Component
 export default class Artists extends Vue {
-  private artists = [];
+  @Prop({ default: 1 })
+  private page!: number;
 
-  mounted() {
+  @Prop({ default: 0 })
+  private count!: number;
+
+  @Prop({ default: [] })
+  private artists!: Array<Artist>;
+
+  @Prop({ default: 12 })
+  private perPage!: number;
+
+  private get currentPage(): number {
+    return this.page;
+  }
+
+  private set currentPage(page: number) {
+    this.page = page;
+
+    this.getArtists();
+  }
+
+  private mounted(): void {
+    this.getArtists();
+  }
+
+  private getArtists(): void {
     axios
-      .get('/api/artists', { params: { per_page: 12 } })
-      .then(response => (this.artists = response.data.results));
+      .get('/api/artists', {
+        params: {
+          page: this.page,
+          per_page: this.perPage
+        }
+      })
+      .then(response => {
+        this.count = response.data.count;
+        this.artists = response.data.results;
+      });
   }
 }
 </script>
