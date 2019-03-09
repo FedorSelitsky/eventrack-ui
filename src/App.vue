@@ -64,7 +64,7 @@ Vue.config.productionTip = false;
 
 @Component
 export default class App extends Vue {
-  isActive(path: string) {
+  private isActive(path: string): boolean {
     return this.$route.path === path;
   }
 }
@@ -356,11 +356,50 @@ a {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-
 }
 
 .rounded {
   border-radius: 500px;
+}
+
+.pagination {
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  border-radius: 0.25rem;
+}
+
+.page-item.active .page-link {
+  color: #fff;
+  z-index: 1;
+  border-color: #f06d35;
+  background-color: #f06d35;
+}
+
+.page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: auto;
+  background-color: #fff;
+  border-color: #dee2e6;
+}
+
+.page-link {
+  border: 1px solid #dee2e6;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  position: relative;
+  margin-left: -1px;
+  line-height: 1.25;
+  background-color: #fff;
+}
+
+.page-link:hover {
+  z-index: 2;
+  border-color: #dee2e6;
+  text-decoration: none;
+  background-color: #e9ecef;
 }
 
 .padding {
