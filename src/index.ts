@@ -3,7 +3,9 @@ import VueRouter from 'vue-router';
 import BootstrapVue from 'bootstrap-vue';
 
 import App from './App.vue';
-import Artists from './components/Artists.vue';
+
+import ArtistsPage from './pages/Artists.vue';
+import EventsPage from './pages/Events.vue';
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
@@ -20,13 +22,14 @@ const routes = [
     path: '/artists',
     name: 'artists',
     title: 'Artists',
-    component: Artists,
+    component: ArtistsPage,
   },
   {
     icon: 'calendar-alt',
     name: 'events',
     path: '/events',
     title: 'Events',
+    component: EventsPage,
   },
   {
     icon: 'map-marker-alt',

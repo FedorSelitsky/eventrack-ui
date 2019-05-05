@@ -7,7 +7,7 @@ Users can bookmark their favorite artists and receive recommendations about thei
 
 ## Requirements
 
-* TypeScript 3.3.3
-* Vue 2.6.8
-* Vue Router 3.0.2
-* Webpack 4.29.6
+* TypeScript 3.4.5
+* Vue 2.6.10
+* Vue Router 3.0.3
+* Webpack 4.30.0

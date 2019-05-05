@@ -1,21 +1,21 @@
 <template>
   <div>
     <div class="m-b">
-      <h1 class="m-a-0">Artists</h1>
+      <h1 class="m-a-0">Events</h1>
     </div>
-    <div class="row row-lg">
-      <div v-for="artist in artists" :key="artist.id" class="col-xs-4 col-sm-4 col-md-3">
-        <div class="item">
-          <div class="item-media rounded">
+    <div class="row item-list item-list-md item-list-li-by m-b">
+      <div v-for="event in events" :key="event.id" class="col-md-12">
+        <div class="item r">
+          <div class="item-media">
             <a
               href="#"
               class="item-media-content"
-              :style="{ 'background-image': `url(${artist.thumb_url})` }"
+              :style="{ 'background-image': `url(${event.thumb_url})` }"
             ></a>
           </div>
-          <div class="item-info text-center">
+          <div class="item-info">
             <div class="item-title text-ellipsis">
-              <a href="#">{{ artist.name }}</a>
+              {{ event.name }}
             </div>
           </div>
         </div>
@@ -31,18 +31,20 @@
 import axios from 'axios';
 import { Vue, Component, Prop } from 'vue-property-decorator';
 
-interface Artist {
+interface Event {
   id: number;
   name: string;
-  image_url: string;
+  type: string;
+  start: Date;
+  end: Date;
   thumb_url: string;
   songkick_url: string;
-  bandsintown_url: string;
-  facebook_page_url: string;
 }
 
+type Events = Array<Event>;
+
 @Component
-export default class Artists extends Vue {
+export default class EventsPage extends Vue {
   @Prop({ default: 1 })
   private page!: number;
 
@@ -50,9 +52,9 @@ export default class Artists extends Vue {
   private count!: number;
 
   @Prop({ default: [] })
-  private artists!: Array<Artist>;
+  private events!: Events;
 
-  @Prop({ default: 12 })
+  @Prop({ default: 10 })
   private perPage!: number;
 
   private get currentPage(): number {
@@ -62,16 +64,16 @@ export default class Artists extends Vue {
   private set currentPage(page: number) {
     this.page = page;
 
-    this.getArtists();
+    this.getEvents();
   }
 
   private mounted(): void {
-    this.getArtists();
+    this.getEvents();
   }
 
-  private getArtists(): void {
+  private getEvents(): void {
     axios
-      .get('/api/artists', {
+      .get('/api/events', {
         params: {
           page: this.page,
           per_page: this.perPage
@@ -79,7 +81,7 @@ export default class Artists extends Vue {
       })
       .then(response => {
         this.count = response.data.count;
-        this.artists = response.data.results;
+        this.events = response.data.results;
       });
   }
 }
