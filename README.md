@@ -9,5 +9,6 @@ Users can bookmark their favorite artists and receive recommendations about thei
 
 * TypeScript 3.4.5
 * Vue 2.6.10
+* Vuex 3.1.1
 * Vue Router 3.0.3
-* Webpack 4.30.0
+* Webpack 4.31.0

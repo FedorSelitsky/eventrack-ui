@@ -7,15 +7,17 @@
       <div v-for="artist in artists" :key="artist.id" class="col-xs-4 col-sm-4 col-md-3">
         <div class="item">
           <div class="item-media rounded">
-            <a
-              href="#"
-              class="item-media-content"
+            <router-link
+              :to="{ name: 'artist', params: { id: artist.id }}"
               :style="{ 'background-image': `url(${artist.thumb_url})` }"
-            ></a>
+              class="item-media-content"
+            ></router-link>
           </div>
           <div class="item-info text-center">
             <div class="item-title text-ellipsis">
-              <a href="#">{{ artist.name }}</a>
+              <router-link :to="{ name: 'artist', params: { id: artist.id }}">
+                {{ artist.name }}
+                </router-link>
             </div>
           </div>
         </div>
@@ -31,17 +33,7 @@
 import axios from 'axios';
 import { Vue, Component, Prop } from 'vue-property-decorator';
 
-interface Artist {
-  id: number;
-  name: string;
-  image_url: string;
-  thumb_url: string;
-  songkick_url: string;
-  bandsintown_url: string;
-  facebook_page_url: string;
-}
-
-type Artists = Array<Artist>;
+import { Artist, Artists } from '../types';
 
 @Component
 export default class ArtistsPage extends Vue {

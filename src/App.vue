@@ -10,7 +10,7 @@
         <nav class="nav-border b-primary">
           <ul class="nav">
             <li
-              v-for="route in $router.options.routes"
+              v-for="route in routes"
               :key="route.name"
               :class="{ 'active': isActive(route.path) }"
             >
@@ -26,6 +26,12 @@
       </div>
     </div>
     <div class="app-content light">
+      <div class="pos-rlt" v-if="this.$store.getters.background">
+        <div
+          class="page-bg"
+          :style="{ 'background-image': `url(${this.$store.getters.background})` }"
+        ></div>
+      </div>
       <div class="page-content">
         <div class="row-col">
           <div class="col-lg-9">
@@ -41,6 +47,8 @@
 
 <script lang="ts">
 import 'bootstrap/dist/css/bootstrap-grid.min.css';
+
+import { routes } from './index';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { Vue, Component } from 'vue-property-decorator';
@@ -66,6 +74,12 @@ Vue.config.productionTip = false;
 export default class App extends Vue {
   private isActive(path: string): boolean {
     return this.$route.path === path;
+  }
+
+  private get routes() {
+    return routes.filter(
+      route => route.hasOwnProperty('icon') && route.hasOwnProperty('title')
+    );
   }
 }
 </script>
@@ -127,6 +141,45 @@ a {
   z-index: 10;
 }
 
+.page-bg {
+  top: 0;
+  left: 0;
+  right: 0;
+  border: 0;
+  bottom: 0;
+  height: 50vh;
+  z-index: 0;
+  position: absolute;
+  background-size: 0;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.page-bg:before {
+  width: 100%;
+  height: 100%;
+  content: '';
+  opacity: 0.1;
+  position: absolute;
+  background-size: cover;
+  background-image: inherit;
+  background-repeat: no-repeat;
+  background-position: inherit;
+}
+
+.page-bg:after {
+  width: 100%;
+  bottom: 0;
+  height: 50%;
+  content: '';
+  position: absolute;
+  background-repeat: repeat-x;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
+}
+.light .page-bg:after {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #f8f8f8);
+}
+
 .row [class*="col-"] {
   padding-left: 12px;
   padding-right: 12px;
@@ -138,6 +191,22 @@ a {
   display: table;
   border-spacing: 0;
   table-layout: fixed;
+}
+
+.row-col > [class*="col-"],
+.row-col > [class*=" col-"] {
+  float: none;
+  padding: 0;
+  position: static;
+  vertical-align: top;
+}
+
+@media (min-width: 544px) {
+  .row-col > [class*="col-sm"],
+  .row-col > [class*=" col-sm"] {
+    height: 100%;
+    display: table-cell;
+  }
 }
 
 .row-lg {
@@ -450,6 +519,23 @@ a {
 
 .padding {
   padding: 1.5rem 1.5rem;
+}
+
+.pos-rlt {
+  position: relative;
+  z-index: 1;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.w {
+  width: 180px;
+}
+
+.p-l-md {
+  padding-left: 1.5rem;
 }
 
 .m-b {

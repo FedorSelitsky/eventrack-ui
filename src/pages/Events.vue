@@ -14,9 +14,7 @@
             ></a>
           </div>
           <div class="item-info">
-            <div class="item-title text-ellipsis">
-              {{ event.name }}
-            </div>
+            <div class="item-title text-ellipsis">{{ event.name }}</div>
           </div>
         </div>
       </div>
@@ -31,17 +29,7 @@
 import axios from 'axios';
 import { Vue, Component, Prop } from 'vue-property-decorator';
 
-interface Event {
-  id: number;
-  name: string;
-  type: string;
-  start: Date;
-  end: Date;
-  thumb_url: string;
-  songkick_url: string;
-}
-
-type Events = Array<Event>;
+import { Event, Events } from '../types';
 
 @Component
 export default class EventsPage extends Vue {
